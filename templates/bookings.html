@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Bookings - EV Recharge</title>
+  <style>
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f0f8ff;
+      margin: 0;
+      padding: 0;
+    }
+
+    .navbar {
+      background-color: #0b3d91;
+      color: white;
+      padding: 1rem 2rem;
+      font-size: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .navbar .left {
+      font-weight: 500;
+    }
+
+    .navbar .right a {
+      font-size: 1rem;
+      color: white;
+      background-color: #28a745;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+
+    .navbar .right a:hover {
+      background-color: #1e7e34;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: #0b3d91;
+      margin-bottom: 2rem;
+    }
+
+    .booking-card {
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+      background-color: #f9f9f9;
+    }
+
+    .booking-card h3 {
+      color: #0b3d91;
+      margin-bottom: 0.5rem;
+    }
+
+    .booking-card p {
+      margin: 0.4rem 0;
+      font-size: 0.95rem;
+    }
+
+    .cancel-btn {
+      margin-top: 1rem;
+      padding: 0.5rem 1rem;
+      background-color: #dc3545;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .cancel-btn:hover {
+      background-color: #c82333;
+    }
+
+    .no-bookings {
+      text-align: center;
+      font-size: 1.1rem;
+      color: #555;
+      margin-top: 2rem;
+    }
+
+    @media (max-width: 600px) {
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .navbar .right {
+        margin-top: 0.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="navbar">
+    <div class="left">
+      📋 My Bookings
+    </div>
+    <div class="right">
+      <a href="{{ url_for('user_dashboard') }}">⬅ Back to Dashboard</a>
+    </div>
+  </div>
+
+  <div class="container">
+    <h2>Your Active Bookings</h2>
+
+    {% if bookings %}
+      {% for booking in bookings %}
+        <div class="booking-card">
+          <h3>🔌 {{ booking.bunk_name }}</h3>
+          <p><strong>Address:</strong> {{ booking.address }}</p>
+          <p><strong>Booked on:</strong> {{ booking.timestamp }}</p>
+          <p><strong>PIN:</strong> <span style="color: green; font-weight: bold;">{{ booking.pin }}</span></p>
+
+          <form method="POST" action="{{ url_for('cancel_booking', booking_id=booking.booking_id) }}">
+            <button type="submit" class="cancel-btn">❌ Cancel Booking</button>
+          </form>
+        </div>
+      {% endfor %}
+    {% else %}
+      <p class="no-bookings">You have no active bookings.</p>
+    {% endif %}
+  </div>
+
+</body>
+</html>

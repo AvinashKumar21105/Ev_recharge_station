@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Edit EV Bunk</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f1f5f9;
+      margin: 0;
+    }
+    .navbar {
+      background-color: #0b3d91;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+      font-size: 1.5rem;
+    }
+    .container {
+      max-width: 600px;
+      margin: 3rem auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+    h2 {
+      color: #0b3d91;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+    label {
+      font-weight: bold;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 0.6rem;
+      margin-top: 0.3rem;
+      margin-bottom: 1rem;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    .btn {
+      background-color: #0b3d91;
+      color: white;
+      padding: 0.8rem;
+      width: 100%;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    .btn:hover {
+      background-color: #062d6f;
+    }
+    .back-link {
+      display: block;
+      margin-top: 1rem;
+      text-align: center;
+      color: #0b3d91;
+      text-decoration: none;
+    }
+    .back-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">Edit EV Bunk - {{ bunk.bunk_name }}</div>
+
+  <div class="container">
+    <h2>✏️ Update Bunk Details</h2>
+    <form method="POST">
+      <label for="bunk_name">Bunk Name:</label>
+      <input type="text" id="bunk_name" name="bunk_name" value="{{ bunk.bunk_name }}" required />
+
+      <label for="slot_count">Slot Count:</label>
+      <input type="number" id="slot_count" name="slot_count" value="{{ bunk.slot_count }}" required />
+
+      <label for="address">Address:</label>
+      <textarea id="address" name="address" rows="3" required>{{ bunk.address }}</textarea>
+
+      <label for="gmap_link">Google Maps Link:</label>
+      <input type="text" id="gmap_link" name="gmap_link" value="{{ bunk.gmap_link }}" required />
+
+      <button type="submit" class="btn">✅ Update Bunk</button>
+    </form>
+
+    <a href="{{ url_for('admin_home') }}" class="back-link">← Back to Admin Home</a>
+  </div>
+</body>
+</html>

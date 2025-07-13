@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>User Login</title>
+  <style>
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #e0f7fa, #e1f5fe);
+      margin: 0;
+      padding: 0;
+    }
+
+    .navbar {
+      background-color: #003b46;
+      color: #00ffd0;
+      padding: 1rem 2rem;
+      text-align: center;
+      font-size: 1.6rem;
+      font-weight: bold;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .form-container {
+      max-width: 400px;
+      margin: 4rem auto;
+      background-color: rgba(255, 255, 255, 0.95);
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-container h2 {
+      margin-bottom: 1.5rem;
+      color: #004d61;
+      text-align: center;
+    }
+
+    .form-container label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: #333;
+    }
+
+    .form-container input[type="email"],
+    .form-container input[type="password"] {
+      width: 100%;
+      padding: 0.6rem;
+      margin-bottom: 1rem;
+      border: 1px solid #b0bec5;
+      border-radius: 5px;
+      font-size: 1rem;
+      background-color: #f1f8ff;
+      color: #000;
+    }
+
+    .form-container input[type="submit"] {
+      width: 100%;
+      padding: 0.7rem;
+      background-color: #00bfa5;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .form-container input[type="submit"]:hover {
+      background-color: #009e88;
+    }
+
+    .flash-message {
+      margin-bottom: 1rem;
+      padding: 0.8rem;
+      border-radius: 5px;
+      font-size: 0.95rem;
+      border-left: 6px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">⚡ EV Recharge Station - User Login</div>
+
+  <div class="form-container">
+    <h2>🔓 User Login</h2>
+
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="flash-message" style="
+            background-color:
+              {% if category == 'success' %} #e6ffed;
+              {% elif category == 'danger' %} #ffebee;
+              {% elif category == 'warning' %} #fff8e1;
+              {% else %} #e3f2fd;
+              {% endif %};
+            color: #000;
+            border-left-color:
+              {% if category == 'success' %} #2e7d32;
+              {% elif category == 'danger' %} #c62828;
+              {% elif category == 'warning' %} #ff8f00;
+              {% else %} #0277bd;
+              {% endif %};">
+            {{ message }}
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <form action="/user/login" method="POST">
+      <label for="email">Email Address</label>
+      <input type="email" id="email" name="user_email" required />
+
+      <label for="password">Password</label>
+      <input type="password" id="password" name="user_password" required />
+
+      <input type="submit" value="Login" />
+    </form>
+  </div>
+
+  <!-- JavaScript to hide flash messages after 5 seconds -->
+  <script>
+    setTimeout(() => {
+      const flashMessages = document.querySelectorAll('.flash-message');
+      flashMessages.forEach(msg => {
+        msg.style.transition = 'opacity 0.5s ease';
+        msg.style.opacity = '0';
+        setTimeout(() => msg.remove(), 500); // Remove from DOM after fade out
+      });
+    }, 5000);
+  </script>
+</body>
+</html>

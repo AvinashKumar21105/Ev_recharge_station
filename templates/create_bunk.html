@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Create EV Bunk</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f9ff;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 3rem auto;
+      background-color: #fff;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: #004d61;
+    }
+
+    label {
+      display: block;
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 0.7rem;
+      margin-top: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      margin-top: 2rem;
+      width: 100%;
+      padding: 0.8rem;
+      background-color: #00bfa5;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #009e88;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>🔌 Create EV Bunk Location</h2>
+    <form method="POST">
+      <label for="bunk_name">Bunk Name</label>
+      <input type="text" id="bunk_name" name="bunk_name" required />
+
+      <label for="slot_count">Number of Charging Slots</label>
+      <input type="number" id="slot_count" name="slot_count" min="1" required />
+
+      <label for="address">Address</label>
+      <textarea id="address" name="address" rows="3" required></textarea>
+
+      <label for="gmap_link">Google Maps Link</label>
+      <input type="url" id="gmap_link" name="gmap_link" required />
+
+      <button type="submit">Add Bunk</button>
+    </form>
+  </div>
+</body>
+</html>

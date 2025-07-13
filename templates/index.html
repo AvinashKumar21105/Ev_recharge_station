@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>EV Recharge Bunk</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: white;
+    }
+
+    header {
+      background-color: rgba(0, 0, 0, 0.4);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: #00ffcc;
+    }
+
+    nav a {
+      color: white;
+      margin-left: 1.5rem;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 3rem 2rem;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      color: #00ffcc;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    .cards-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 3rem 1rem;
+      gap: 2rem;
+    }
+
+    .card {
+      background-color: rgba(255, 255, 255, 0.05);
+      padding: 2rem;
+      width: 280px;
+      border-radius: 10px;
+      text-align: center;
+      transition: 0.3s;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .card h3 {
+      color: #00ffcc;
+      margin-bottom: 1rem;
+    }
+
+    .card a {
+      display: block;
+      margin: 0.5rem 0;
+      padding: 0.6rem;
+      background-color: #00ffcc;
+      color: #000;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 5px;
+      transition: 0.3s;
+    }
+
+    .card a:hover {
+      background-color: #00ccaa;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: rgba(255,255,255,0.05);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.3rem;
+      }
+
+      .cards-container {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">⚡ EV Recharge Bunk</div>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">About</a>
+      <a href="#">Support</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Charge Your EV Anytime, Anywhere</h1>
+    <p>Welcome to EV Recharge Bunk — your smart solution to find and book nearby electric vehicle charging stations in real-time. Make your EV journey seamless and stress-free.</p>
+  </section>
+
+  <section class="cards-container">
+    <div class="card">
+      <h3>User Access</h3>
+      <a href="/user/login">👤 User Login</a>
+      <a href="/user/register">📝 User Register</a>
+    </div>
+    <div class="card">
+      <h3>Admin Access</h3>
+      <a href="/admin/login">🔐 Admin Login</a>
+      <a href="/admin/register">🛠️ Admin Register</a>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 EV Recharge Bunk | Built for smarter cities and sustainable travel.
+  </footer>
+
+</body>
+</html>

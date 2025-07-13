@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Home</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f1f5f9;
+      margin: 0;
+    }
+    .navbar {
+      background-color: #0b3d91;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+      font-size: 1.5rem;
+    }
+    .container {
+      max-width: 800px;
+      margin: 3rem auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+    h2 {
+      color: #0b3d91;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+    .action-btn {
+      display: block;
+      width: 100%;
+      margin: 0.5rem 0;
+      padding: 0.8rem;
+      background-color: #0b3d91;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      text-align: center;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .action-btn:hover {
+      background-color: #062d6f;
+    }
+    .flash-message {
+      padding: 1rem;
+      margin-bottom: 1rem;
+      border-radius: 5px;
+      color: #000;
+    }
+
+    .bunk-card {
+      border: 1px solid #ccc;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      border-radius: 8px;
+    }
+    .bunk-card h3 {
+      margin: 0;
+      color: #0b3d91;
+    }
+    .bunk-card p {
+      margin: 0.3rem 0;
+    }
+    .card-actions {
+      margin-top: 1rem;
+    }
+    .edit-btn, .delete-btn {
+      display: inline-block;
+      padding: 0.4rem 0.8rem;
+      font-size: 0.9rem;
+      border-radius: 5px;
+      text-decoration: none;
+      margin-right: 0.5rem;
+    }
+    .edit-btn {
+      background-color: #28a745;
+      color: white;
+    }
+    .edit-btn:hover {
+      background-color: #1e7e34;
+    }
+    .delete-btn {
+      background-color: #dc3545;
+      color: white;
+    }
+    .delete-btn:hover {
+      background-color: #bd2130;
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">Welcome, Admin {{ admin.name }}</div>
+
+  <div class="container">
+    <h2>🛠️ Admin Control Panel</h2>
+
+    <a href="/admin/create-bunk" class="action-btn">➕ Create EV Bunk Location</a>
+    <a href="/admin/manage_slots" class="action-btn">✅ Manage Recharge Slots</a>
+    <a href="/logout" class="action-btn" style="background-color: #dc3545;">Logout</a>
+
+    <hr>
+    <h2>📍 Existing EV Bunk Stations</h2>
+
+    {% if bunks %}
+      {% for key, bunk in bunks.items() %}
+        <div class="bunk-card">
+          <h3>{{ bunk.bunk_name }}</h3>
+          <p><strong>Address:</strong> {{ bunk.address }}</p>
+          <p><strong>Slots:</strong> {{ bunk.slot_count }}</p>
+          <p><strong>Google Maps:</strong> <a href="{{ bunk.gmap_link }}" target="_blank">View Location</a></p>
+          <div class="card-actions">
+            <a href="/admin/edit-bunk/{{ key }}" class="edit-btn">✏️ Edit</a>
+            <a href="/admin/delete-bunk/{{ key }}" class="delete-btn" onclick="return confirm('Are you sure you want to delete this bunk?');">🗑️ Delete</a>
+          </div>
+        </div>
+      {% endfor %}
+    {% else %}
+      <p>No EV bunks found.</p>
+    {% endif %}
+
+  </div>
+
+  <script>
+    setTimeout(() => {
+      document.querySelectorAll('.flash-message').forEach(el => el.remove());
+    }, 5000);
+  </script>
+</body>
+</html>
