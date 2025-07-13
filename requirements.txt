@@ -6,3 +6,5 @@ gunicorn==21.2.0
 Flask
 pyrebase4
 gunicorn
+setuptools
+
