@@ -146,16 +146,16 @@ def book_now(bunk_id):
 def admin_register():
     if request.method == 'POST':
         data = {
-            "name": request.form['admin_name'],
-            "email": request.form['admin_email'],
-            "phone": request.form['admin_phone'],
-            "password": request.form['admin_password']
+            "name": request.form.get('admin_name'),
+            "email": request.form.get('admin_email'),
+            "phone": request.form.get('admin_phone'),
+            "password": request.form.get('admin_password')
         }
 
         admins = db.child("admins").get().val()
         if admins:
             for admin in admins.values():
-                if admin['email'] == data['email']:
+                if admin.get('email') == data['email']:
                     flash("Admin already registered!", "danger")
                     return redirect(url_for('admin_register'))
 
@@ -164,6 +164,7 @@ def admin_register():
         return redirect(url_for('admin_login'))
 
     return render_template("admin_register.html")
+
 
 
 @app.route('/admin/login', methods=['GET', 'POST'])
@@ -175,11 +176,11 @@ def admin_login():
         admins = db.child("admins").get().val()
         if admins:
             for key, admin in admins.items():
-                if admin['email'] == email and admin['password'] == password:
+                if admin.get('email') == email and admin.get('password') == password:
                     session['admin'] = {
-                        "name": admin['name'],
-                        "email": admin['email'],
-                        "phone": admin['phone']
+                        "name": admin.get('name'),
+                        "email": admin.get('email'),
+                        "phone": admin.get('phone')
                     }
                     flash("Admin login successful!", "success")
                     return redirect(url_for('admin_home'))
@@ -188,6 +189,7 @@ def admin_login():
         return redirect(url_for('admin_login'))
 
     return render_template("admin_login.html")
+
 
 
 @app.route('/admin/home')
